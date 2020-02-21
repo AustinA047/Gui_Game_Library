@@ -52,8 +52,6 @@ class MainMenu(Screen):
         Screen.switch_frame()
         
     def go_edit(self):
-        '''Screen.current = 2
-        Screen.switch_frame()'''
         pop_up = tk.Tk()
         pop_up.title("Edit Selection")       
         frm_edit_entry = EditEntry(pop_up)
@@ -174,14 +172,18 @@ class Add(Screen):
         self.sct_notes = ScrolledText(self, height = 8, width = 40)
         self.sct_notes.grid(row = 6, columnspan = 3, sticky = "news")
         
-        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
-        self.btn_cancel.grid(row = 7, column = 0, sticky = "news")
+        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT, command = self.go_main)
+        self.btn_cancel.grid(row = 7, column = 0)
         
         self.btn_reset = tk.Button(self, text ="Reset", font = BUTTON_FONT)
         self.btn_reset.grid(row = 7, column = 1, sticky = "news")
         
-        self.btn_confirm = tk.Button(self, text ="Confirm", font = BUTTON_FONT)
-        self.btn_confirm.grid(row = 7, column = 2, sticky = "news")
+        self.btn_confirm = tk.Button(self, text ="Confirm", font = BUTTON_FONT, command = self.go_main)
+        self.btn_confirm.grid(row = 7, column = 2)
+        
+    def go_main(self):
+        Screen.current = 0
+        Screen.switch_frame()        
         
 class Edit(Screen):
     def __init__(self):
@@ -241,14 +243,18 @@ class Edit(Screen):
         self.sct_notes = ScrolledText(self, height = 8, width = 40)
         self.sct_notes.grid(row = 6, columnspan = 3, sticky = "news")
         
-        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
-        self.btn_cancel.grid(row = 7, column = 0, sticky = "news")
+        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT, command = self.go_main)
+        self.btn_cancel.grid(row = 7, column = 0)
         
         self.btn_reset = tk.Button(self, text ="Reset", font = BUTTON_FONT)
         self.btn_reset.grid(row = 7, column = 1, sticky = "news")
         
-        self.btn_confirm = tk.Button(self, text ="Confirm", font = BUTTON_FONT)
-        self.btn_confirm.grid(row = 7, column = 2, sticky = "news")        
+        self.btn_confirm = tk.Button(self, text ="Confirm", font = BUTTON_FONT, command = self.go_main)
+        self.btn_confirm.grid(row = 7, column = 2)  
+        
+    def go_main(self):
+        Screen.current = 0
+        Screen.switch_frame()        
 
 class EditEntry(tk.Frame):
     def __init__(self,parent):
@@ -264,12 +270,17 @@ class EditEntry(tk.Frame):
                                   self.tkvar, *options)
         self.menu.grid(row = 1, column = 0, sticky = "news")
         
-        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
-        self.btn_cancel.grid(row = 2, column = 0, sticky = "news")
+        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT, command = self.go_main)
+        self.btn_cancel.grid(row = 2, column = 0)
         
-        self.btn_ok = tk.Button(self, text ="Correct", font = BUTTON_FONT)
-        self.btn_ok.grid(row = 3, column = 0, sticky = "news")
-
+        self.btn_confirm = tk.Button(self, text ="Confirm", font = BUTTON_FONT, command = self.go_main)
+        self.btn_confirm.grid(row = 3, column = 0)  
+        
+    def go_main(self):
+        Screen.current = 0
+        Screen.switch_frame()
+        
+        
 class Save(Screen):
     def __init__(self):
         Screen.__init__(self)
